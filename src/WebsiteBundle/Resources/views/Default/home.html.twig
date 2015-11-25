@@ -1,0 +1,231 @@
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+</head>
+<body>
+{% block stylesheets %}
+    {% stylesheets
+        '@WebsiteBundle/Resources/public/css/app_2.css'
+        '@WebsiteBundle/Resources/public/css/item.css'
+        '@WebsiteBundle/Resources/public/css/openingsuren.css'
+    %}
+
+    <link type="text/css" href="{{ asset_url }}" rel="stylesheet" />
+    {% endstylesheets %}
+{% endblock %}
+<script type="text/javascript">
+    jQuery(document).ready(function($){
+        $('.carousel').carousel();
+
+        $('#top-navigation').on('click', 'a', function(e){
+            e.preventDefault();
+            $('#top-navigation li.active').removeClass('active');
+            $(this).closest('li').addClass('active');
+            reloadContent($(this).attr('href'));
+        });
+
+        $('#sidebar-wrapper').on('click', 'a', function(e){
+            e.preventDefault();
+            $('#sidebar-wrapper li.active').removeClass('active');
+            $(this).closest('li').addClass('active');
+            reloadContent($(this).attr('href'));
+        });
+
+        function reloadContent(linkHref)
+        {
+            if(linkHref != "#") {
+                $.get(linkHref, function (data) {
+                    $('#content').replaceWith($(data).find('#content'));
+                });
+            }
+        }
+    });
+</script>
+
+<div id="outer-wrapper" class="col-sm-12 col-sm-offset-0">
+    {% block navigation_top %}
+        <nav id="top-navigation" class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header col-md-3">
+                    <a class="navbar-brand" href="{{ path('home') }}">Fun-Rent</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="{{ path('home') }}">Home<span class="sr-only">(current)</span></a></li>
+                        <li><a href="#">Nieuw</a></li>
+                        <li><a href="{{ path('openingsuren') }}">Openingsuren</a></li>
+                        <li><a href="{{ path('contact') }}">Contact</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <form class="navbar-form navbar-left" role="search">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Zoeken">
+                            </div>
+                            <button type="submit" class="btn btn-default" style="height: 34px"><i class="fa fa-search" ></i></button>
+                            <button type="submit" class="btn btn-default" style="height: 34px"><i class="fa fa-shopping-cart" ></i></button>
+                        </form>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+    {% endblock %}
+
+    {% block header %}
+        <div class="header">
+            <div id="header-carousel" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#header1" data-slide-to="0" class="active"></li>
+                    <li data-target="#header2" data-slide-to="1"></li>
+                    <li data-target="#header3" data-slide-to="2"></li>
+                </ol>
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active">
+                        <img src="/images/header/header1.JPG" alt="header1">
+                        <div class="carousel-caption">
+                            Tent
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="/images/header/header2.JPG" alt="header2">
+                        <div class="carousel-caption">
+                            Starheaven
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="/images/header/header3.JPG" alt="header3">
+                        <div class="carousel-caption">
+                            Springkasteel
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <a class="left carousel-control" href="#header-carousel" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#header-carousel" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+
+    {% endblock %}
+
+
+    <div id="body" class="col-md-10 col-md-offset-1">
+        {% block side_menu %}
+            <div id="sidebar-wrapper" class="col-md-3">
+                <ul class="nav nav-pills nav-stacked">
+                    <li role="presentation">
+                        <a href="#" class="collapsed" data-toggle="collapse" data-target="#sub-bar">
+                            <i class="item-closed pull-left fa fa-chevron-down"></i>
+                            <i class="item-opened pull-left fa fa-chevron-up"></i>
+                            Bar
+                        </a>
+                        <ul id="sub-bar" class="nav nav-pills nav-stacked collapse">
+                            <li role="presentation"><a href="#">Tap</a></li>
+                            <li role="presentation"><a href="{{ path('catalogus', {'categorie': 'toog'}) }}">Toog</a></li>
+                            <li role="presentation"><a href="#">Koeling</a></li>
+                            <li role="presentation"><a href="#">Koelwagen</a></li>
+                        </ul>
+                    </li>
+                    <li role="presentation">
+                        <a href="#">
+                            <i class="item-closed pull-left fa fa-chevron-down"></i>
+                            <i class="item-opened pull-left fa fa-chevron-up"></i>
+                            Aan tafel
+                        </a>
+                    </li>
+                    <li role="presentation"><a href="#"><i class="item-closed pull-left fa fa-chevron-down"></i><i class="item-opened pull-left fa fa-chevron-up"></i>Keuken materiaal</a></li>
+                    <li role="presentation"><a href="#"><i class="item-closed pull-left fa fa-chevron-down"></i><i class="item-opened pull-left fa fa-chevron-up"></i>Meubilair</a></li>
+                    <li role="presentation"><a href="#"><i class="item-closed pull-left fa fa-chevron-down"></i><i class="item-opened pull-left fa fa-chevron-up"></i>Lounge</a></li>
+                    <li role="presentation"><a href="#"><i class="item-closed pull-left fa fa-chevron-down"></i><i class="item-opened pull-left fa fa-chevron-up"></i>Springkastelen</a></li>
+                    <li role="presentation"><a href="#"><i class="item-closed pull-left fa fa-chevron-down"></i><i class="item-opened pull-left fa fa-chevron-up"></i>Attracties</a></li>
+                    <li role="presentation"><a href="#"><i class="item-closed pull-left fa fa-chevron-down"></i><i class="item-opened pull-left fa fa-chevron-up"></i>Volksspelen</a></li>
+                    <li role="presentation"><a href="#"><i class="item-closed pull-left fa fa-chevron-down"></i><i class="item-opened pull-left fa fa-chevron-up"></i>Tenten</a></li>
+                    <li role="presentation"><a href="#"><i class="item-closed pull-left fa fa-chevron-down"></i><i class="item-opened pull-left fa fa-chevron-up"></i>Verlichting</a></li>
+                    <li role="presentation"><a href="#"><i class="item-closed pull-left fa fa-chevron-down"></i><i class="item-opened pull-left fa fa-chevron-up"></i>Stroomvoorziening</a></li>
+                    <li role="presentation"><a href="#"><i class="item-closed pull-left fa fa-chevron-down"></i><i class="item-opened pull-left fa fa-chevron-up"></i>Verwarming</a></li>
+                    <li role="presentation"><a href="#"><i class="item-closed pull-left fa fa-chevron-down"></i><i class="item-opened pull-left fa fa-chevron-up"></i>Sanitair</a></li>
+                    <li role="presentation"><a href="#"><i class="item-closed pull-left fa fa-chevron-down"></i><i class="item-opened pull-left fa fa-chevron-up"></i>Luikse wafels</a></li>
+                    <li role="presentation"><a href="#"><i class="item-closed pull-left fa fa-chevron-down"></i><i class="item-opened pull-left fa fa-chevron-up"></i>Klank en licht</a></li>
+                    <li role="presentation"><a href="#"><i class="item-closed pull-left fa fa-chevron-down"></i><i class="item-opened pull-left fa fa-chevron-up"></i>Diversen</a></li>
+                    <li role="presentation"><a href="#"><i class="item-closed pull-left fa fa-chevron-down"></i><i class="item-opened pull-left fa fa-chevron-up"></i>Beursstanden</a></li>
+                    <li role="presentation"><a href="#"><i class="item-closed pull-left fa fa-chevron-down"></i><i class="item-opened pull-left fa fa-chevron-up"></i>Decoraties</a></li>
+                    <li role="presentation"><a href="#"><i class="item-closed pull-left fa fa-chevron-down"></i><i class="item-opened pull-left fa fa-chevron-up"></i>Helium en balonnen</a></li>
+                </ul>
+            </div>
+    {% endblock %}
+        <div id="content" class="col-md-9">
+            {% block flashes %}
+                <section id="widget-grid" class="">
+                    <div class="row">
+                            {% for type in ["error", "warning", "success", "info", "danger"] %}
+                                {% for flashMessage in app.session.flashbag.get("message.#{type}") %}
+                                    <div class="alert alert-{{ type }}">
+                                        <a href="#" class="close" data-dismiss="alert">×</a>
+                                        {{ flashMessage|raw }}
+                                    </div>
+                                {% endfor %}
+                            {% endfor %}
+                    </div>
+                </section>
+            {% endblock %}
+
+            {% block content %}
+                <h3 id="welcome-title">Welkom bij Fun-Rent</h3>
+
+                <p class="welcome-text">
+                    Fun-Rent is een jong en dynamisch bedrijf, gespecialiseerd in feestverhuur.
+                    Van bestek tot tafels, van tent tot tap, alles hebben wij in eigen stock en beheer.
+                    <br/>
+                    <br/>
+                    Flexibiliteit, service en ijzersterke prijs-kwaliteitsverhouding zijn onze sterkste troeven.
+                    Of het nu om een diner voor 2 gaat, een feest met 200 gasten of een evenement met 2000 genodigden, Fun-Rent verhuurt u steeds perfect materiaal.
+                    <br/>
+                    <br/>
+                    U kan al uw gehuurd materiaal steeds zelf ophalen, of U kan alles door ons laten leveren en ophalen.
+                    <br/>
+                    <br/>
+                    Indien u nog vragen hebt aarzel dan niet om ons te contacteren.
+                    Tijdens de <a href="{{ path('openingsuren') }}">openingsuren</a> kunt u steeds langskomen.
+                </p>
+            {% endblock %}
+        </div>
+    </div>
+    <div id="footer" class="col-md-12">
+        {% block footer %}
+            <div class="contact col-md-5">
+                <strong>tel : </strong> 053/41.72.35
+                <br/>
+                <strong>fax : </strong>053/77.20.29
+            </div>
+            <div class="adres col-md-3">
+                <br/>
+                Wijngaardveld 4 9300 Aalst
+            </div>
+            <div class="copyright col-md-4">
+                <i class="fa fa-copyright pull-right">Copyright</i>
+                <br/>
+                <span class="pull-right">
+                    Beelmateriaal eigendom van Fun Rent
+                </span>
+            </div>
+        {% endblock %}
+    </div>
+</div>
+</body>
+</html>

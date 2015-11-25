@@ -1,0 +1,169 @@
+/* VARIABLES */
+
+@menu-red: rgba(91, 94, 92, 0.1);
+@menu-active-red: rgba(255, 0, 0, 1);
+@menu-yellow: rgba(27, 27, 27, 0.82);
+@menu-active-yellow: white;
+
+@top-menu-red: rgba(255, 0, 0, 1);
+@top-menu-active-red: rgba(255, 0, 0, 0.8);
+@top-menu-yellow: rgba(255, 255, 0, 0.6);
+@top-menu-active-yellow: rgba(255, 255, 0, 1);
+
+
+@body-backgound: rgba(191, 191, 194, 0.6);
+@content-backgound: transparent;
+
+/*GENERAL*/
+body {
+  background-color: rgba(232, 213, 51, 0.3);
+  font-family: "Lucida Grande", "Lucida Sans Unicode", "Bitstream Vera Sans", Lucida, Arial, Geneva, Helvetica, sans-serif;
+  /*font-size: 1.2em;*/
+  background-image: url("/images/background3.png");
+  background-size: 100%;
+
+}
+#outer-wrapper {
+  background-color: @content-backgound;
+  padding: 0;
+}
+a {
+  color: darkred;
+}
+a:hover {
+  color: red;
+}
+
+/*HEADER */
+.carousel-inner {
+  height: 40%;
+}
+
+.carousel-inner img {
+  margin: auto;
+  width: 100%;
+}
+
+
+/*TOP MENU*/
+#top-navigation {
+  margin-bottom: 0;
+}
+#top-navigation li a{
+  color: @top-menu-yellow;
+  background-color: transparent;
+}
+#top-navigation li a:hover, #top-navigation li.active a {
+  background-color: @top-menu-active-red;
+  color: @top-menu-active-yellow;
+}
+
+.navbar-inverse {
+  background-color: @top-menu-red;
+  border-color: @top-menu-red;
+}
+.navbar-brand {
+  color: @top-menu-active-yellow ! important;
+  font-size: 2.5em;
+  margin-right: 48px;
+}
+
+
+/*SIDE MENU*/
+#sidebar-wrapper {
+  padding: 0;
+  padding-bottom: 30px;
+}
+
+#sidebar-wrapper li {
+  margin-top: 3px;
+  border-radius: 4px;
+  background-color: @menu-red;
+}
+#sidebar-wrapper a{
+  border-radius: 4px;
+}
+.nav li li a {
+/*  border-top: 1px solid #565656; */
+  padding-left: 40px;
+}
+
+#sidebar-wrapper li a{
+  color: @menu-yellow;
+}
+#sidebar-wrapper a:hover, #sidebar-wrapper li.active > a {
+  background-color: @menu-active-red;
+  color: @menu-active-yellow;
+  i {
+    color: @menu-active-yellow;
+  }
+}
+#sidebar-wrapper a.collapsed .item-closed {
+  display: block;
+}
+#sidebar-wrapper a.collapsed .item-opened {
+  display: none;
+}
+#sidebar-wrapper a .item-closed {
+  display: none;
+}
+#sidebar-wrapper a .item-opened {
+  display: block;
+}
+#sidebar-wrapper a i {
+  color: @menu-yellow;
+  position: relative;
+  top: 4px;
+}
+
+#sidebar-wrapper a:only-child i {
+  visibility: hidden;
+}
+
+/*CONTENT*/
+#content {
+  padding-bottom: 20px;
+}
+
+/*FOOTER*/
+#footer {
+  min-height: 40px;
+  background-color: @top-menu-red;
+  color: @top-menu-active-yellow;
+
+}
+
+
+/*TEXT*/
+#welcome-title {
+  padding-bottom: 20px;
+  border-bottom: 2px solid darkred;
+}
+
+/*FORMS*/
+.form-actions button {
+  float: right;
+  position: relative;
+  top: 10px;
+  right: 17px;
+}
+
+#map-container {
+  min-height: 600px;
+}
+
+#body {
+//  background-color: @menu-red;
+  padding: 0;
+}
+
+/*BUTTONS*/
+.btn.house {
+  background-color: @top-menu-active-red;
+  color: @top-menu-active-yellow;
+}
+
+.btn.house:hover {
+  background-color: @menu-active-red;
+  color: @top-menu-active-yellow;
+}

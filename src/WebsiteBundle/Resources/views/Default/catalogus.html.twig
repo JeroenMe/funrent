@@ -1,0 +1,7 @@
+{% extends 'WebsiteBundle:Default:home.html.twig' %}
+
+{% block content %}
+    {% for item in items %}
+        {% include 'WebsiteBundle:Default:item.html.twig' with {item: item} %}
+    {% endfor %}
+{% endblock %}

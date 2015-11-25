@@ -1,0 +1,56 @@
+<div class="well col-md-4 item-container">
+    <a class="btn btn-success pull-right" data-toggle="modal" data-target="#add-item-{{ item.id }}">
+        <i class="fa fa-plus"></i>
+    </a>
+    <a href="#" data-toggle="modal" data-target="#item-{{ item.id }}">
+        <img src="{{ item.img_src }}" class="img-thumbnail">
+    </a>
+    <h6>{{ item.title }}</h6>
+    <span class="price pull-right">{{ item.price|raw }}</span>
+</div>
+
+<div class="modal fade" id="item-{{ item.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">{{ item.title }}</h4>
+            </div>
+            <div class="modal-body">
+                <img src="{{ item.img_src }}">
+                <p>
+                    {{ item.description }}
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Sluiten</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="add-item-{{ item.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">{{ item.title }} toevoegen aan offerte aanvraag</h4>
+            </div>
+            <div class="modal-body">
+
+                <a class="btn btn-danger">
+                    <i class="fa fa-minus"></i>
+                </a>
+                <input type="number">
+                <a class="btn btn-success pull-right">
+                    <i class="fa fa-plus"></i>
+                </a>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Sluiten</button>
+            </div>
+        </div>
+    </div>
+</div>

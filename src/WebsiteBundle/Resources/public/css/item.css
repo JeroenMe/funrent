@@ -1,0 +1,12 @@
+.item-container {
+    /*margin: 5px;*/
+}
+
+.item-container .img-thumbnail {
+    height: 100px ! important;
+    margin: auto;
+}
+
+.item-container .price {
+    font-weight: 800;
+}

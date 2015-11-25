@@ -1,0 +1,35 @@
+{% extends 'WebsiteBundle:Default:home.html.twig' %}
+{% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
+
+{% block content %}
+    <p>
+        <br/>
+        Beste,
+        <br/>
+        <br/>
+        U kan ons telefonisch bereiken op het nummer 053/41.72.35 of via fax 053/77.20.29.
+        Vul vrijblijvend het <a href="#contact-formulier">contact formulier</a> in als u een vraag per e-mail wenst te stellen.
+    </p>
+    <hr/>
+    <div id="map-container">
+        <iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=Fun%20Rent&key=AIzaSyB1oXHUhz8oQSlm3Ab2YR2ck4tTGfGmGns"></iframe>
+    </div>
+    <hr/>
+    <fieldset>
+        <legend>Contactformulier</legend>
+        <div id="contact-formulier">
+
+            <form
+                    action="{{ path('verstuur_contact') }}"
+                    method="post"
+                    >
+                {{ form_errors(form) }}
+                {{ form_widget(form) }}
+                {{ form_rest(form) }}
+                <div class="form-actions">
+                    <button type="submit" class="btn house btn-primary">Versturen</button>
+                </div>
+            </form>
+        </div>
+    </fieldset>
+{% endblock %}
